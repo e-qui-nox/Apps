@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+
+    <string name="question1">1.What was the theme of the 2018 World Earth Day?</string>
+    <string name="question1_choice1">Save Mother Earth from Plastic</string>
+    <string name="question1_choice2">Plastic Pollution: A Menace</string>
+    <string name="question1_choice3">End Plastic Pollution</string>
+
+    <string name="question2">2. Which country has agreed to halt its nuclear tests and ICBM launches?</string>
+
+    <string name="question3">3.What does the five interlinked Olympic rings on the flag represent?</string>
+
+    <string name="question4">4. Which Olympic champion, is better known as "The Flying Finn" ?</string>
+    <string name="question4_choice1">Paula Radcliffe</string>
+    <string name="question4_choice2"> Lasse Viren</string>
+    <string name="question4_choice3">Nader al Masri</string>
+
+    <string name="question5">5.Which game was added to list of medal event in year 2000?</string>
+
+    <string name="question6">6.Who is the first Indian to participate in Olympics ?</string>
+
+    <string name="question7">7.Olympic Flag was introduced for first time during which Olympic Games ?</string>
+    <string name="question7_choice1">1932, Lake Placid</string>
+    <string name="question7_choice2">1920,Antwerp</string>
+    <string name="question7_choice3">1948, St. Moritz</string>
+
+    <string name="submit_answers">Submit Answers</string>
+
+
+</resources>
