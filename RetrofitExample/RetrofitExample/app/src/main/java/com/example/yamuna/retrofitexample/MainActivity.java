@@ -2,10 +2,11 @@ package com.example.yamuna.retrofitexample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -16,15 +17,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listView;
+    private RecyclerView recyclerView;
+    private List<Hero> heroList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.listViewHeroes);
-        getHeroes();
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_View);
+        RecyclerView.LayoutManager layoutManager=new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        getHeroes();;
+
     }
 
     private void getHeroes() {
@@ -40,17 +45,19 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Hero>>() {
             @Override
             public void onResponse(Call<List<Hero>> call, Response<List<Hero>> response) {
-                List<Hero> heroList = response.body();
-                String[] heroes = new String[heroList.size()];
-                for (int i = 0; i < heroList.size(); i++) {
-                    heroes[i] = heroList.get(i).getName();
+                List<Hero> list=response.body();
+
+                for(int i=0;i<list.size();i++){
+                    String name=(list.get(i).getRealname());
+                    String url=(list.get(i).getImageurl());
+                    heroList.add( new Hero(name,url));
                 }
-                listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, heroes));
+                recyclerView.setAdapter(new HeroAdapter(getApplicationContext(),heroList));
             }
 
             @Override
             public void onFailure(Call<List<Hero>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
